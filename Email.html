@@ -60,8 +60,8 @@
             $.ajax(
 {
     type: "POST",
-    //url: "http://business.2bvision.com/Vcard.asmx/Email",
-    url: "http://localhost:1679/Vcard/Vcard.asmx/Email",
+    url: "http://business.2bvision.com/Vcard.asmx/Email",
+    //url: "http://localhost:1679/Vcard/Vcard.asmx/Email",
     data: "{'messagefrom': '" + senderEmail + "','messageto':'" + messageto + "','subject': '" + subject + "','message': '" + $('#txtMessage').val() + "'}",
     //data: "{'Mobile': '923334127753'}",
     contentType: "application/json; charset=utf-8",
