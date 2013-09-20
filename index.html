@@ -14,8 +14,8 @@
         $(document).ready(function () {
             //alert("Document ready");
             $("#btnEnter").click(function () {
-                Getuserdata()
-                window.location.href = 'Profile.html';
+                Getuserdata();
+                
                
             });
             //if ($.Storage.get("Name") != null) {
@@ -36,22 +36,25 @@
     <!--User Profile Data-->
     <script type="text/javascript">
         function Getuserdata() {
-            //alert("Hello");
+            alert("Hello");
+            var input = $('#txtMobile').val();
+            alert(input);
             $.ajax(
 {
     type: "POST",
-    url: "http://http://business.2bvision.com/Vcard.asmx/GetUserData",
-    //url: "http://localhost:1679/Vcard/Vcard.asmx/GetUserData",
+    //url: "http://business.2bvision.com/Vcard.asmx/GetUserData",
+    url: "http://localhost:1679/Vcard/Vcard.asmx/GetUserData",
     //data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtMobile').val() + "'}",
-    data: "{'Mobile': '" + $('#txtMobile').val() + "'}",
+    data: "{'Mobile': '" + input + "'}",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     success: function (response, status) {
-        // alert("yes");
+        alert("yes");
         //alert(response.d);
         var aa = response.d;
+        alert(aa);
         var substr = aa.split(';');
-
+       // alert(substr);
       
         // alert('splitted.');
         //$("#txtName").val(substr[0]);
@@ -75,10 +78,10 @@
 
         // store Name in session
         var mobile = substr[2];
-        alert(mobile);
+       // alert(mobile);
         $.Storage.set("Mobile", mobile);
         $.Storage.get("Mobile");
-        alert($.Storage.get("Mobile"));
+        //alert($.Storage.get("Mobile"));
 
 
         //// store Name in session
@@ -95,6 +98,7 @@
        // alert($.Storage.get("Email"));
 
         //  $("#testsession").val(abc);
+        window.location.href = 'Profile.html';
     },
     failure: function (msg) {
         alert(msg);

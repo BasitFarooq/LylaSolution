@@ -24,9 +24,9 @@
             // get mobile from session
             var mobile = $.Storage.get("Mobile");
 
-            //alert(mobile);
+           // alert(mobile);
 
-            Getuserdata()
+            Getuserdata();
             var online = navigator.onLine;    // Detecting the internet connection
             if (online) {
                 // do your stuff
@@ -46,8 +46,8 @@
             $.ajax(
 {
     type: "POST",
-    url: "http://http://business.2bvision.com/Vcard.asmx/GetUserData",
-    //url: "http://localhost:1679/Vcard/Vcard.asmx/GetUserData",
+    //url: "http://business.2bvision.com/Vcard.asmx/GetUserData",
+    url: "http://localhost:1679/Vcard/Vcard.asmx/GetUserData",
     //data: "{'email': '" + $('#txtEmail').val() + "','password':'" + $('#txtPassword').val() + "'}",
     data: "{'Mobile': '" + mobile + "'}",
     contentType: "application/json; charset=utf-8",
