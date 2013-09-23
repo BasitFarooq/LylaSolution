@@ -36,9 +36,9 @@
     <!--User Profile Data-->
     <script type="text/javascript">
         function Getuserdata() {
-            alert("Hello");
+            //alert("Hello");
             var input = $('#txtMobile').val();
-            alert(input);
+            //alert(input);
             $.ajax(
 {
     type: "POST",
@@ -52,7 +52,7 @@
         alert("yes");
         //alert(response.d);
         var aa = response.d;
-        alert(aa);
+        //alert(aa);
         var substr = aa.split(';');
        // alert(substr);
       
@@ -134,10 +134,8 @@
 
         <div class="content-area">
             <div class="input-bg">
-                <input type="text" value="Enter Mobile Number" style="border-right: 1px solid #FFF;" />
-                <input type="text" id="txtMobile" style="width: 76%" />
-                <a href="">
-                    <img src="images/edit-icon.png" style="float: right; margin: 10px;" /></a>
+                <input type="text" value="Enter Mobile Number" id="left-input"/>
+                <input type="text" id="txtMobile" style="width:45%" />
             </div>
 
             <div class="input-bg">
