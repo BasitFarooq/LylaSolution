@@ -14,11 +14,11 @@
         $(document).ready(function () {
             //alert("Document ready");
 
-            //if ($.Storage.get("Mobile") != null) {
-            //    $.Storage.set("Mobile", "");
+            if ($.Storage.get("Mobile") != null && $.Storage.get("Mobile") != "") {
+                $.Storage.set("Mobile", "");
 
-            //window.location.href = 'index.html'
-            // }
+            window.location.href = 'index.html'
+             }
 
 
             // get mobile from session
