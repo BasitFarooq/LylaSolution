@@ -131,6 +131,8 @@ body
 	height:40px;
 	margin:2% 0 0 0;
 	background:#2c2c2d;
+    position:fixed;
+    bottom:0;
 }
 .footer
 {
@@ -195,4 +197,18 @@ body
 	height:20px;
 	margin:5px auto;
 	overflow:hidden;
+}
+
+.contact-list
+{
+    color:#fff;
+    //padding:2px;
+    margin:5px;
+    margin-top: 1%;
+    background: #2c2c2d;
+    border: 1px solid #93908f;
+    box-shadow: 1px 1px 0px 0px #999;
+    font-family:Calibri;
+    font-size:120%;
+    padding:2px 2px 2px 15px;
 }

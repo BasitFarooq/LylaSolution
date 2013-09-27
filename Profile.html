@@ -6,6 +6,7 @@
     <script type="text/javascript" src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
     <script src="js/jquery-ui.js" type="text/javascript"></script>
+     <script type="text/javascript" src="js/cordova.js"></script>
     <script type="text/javascript" src="js/jquery.Storage.js"></script>
     <script type="text/javascript" src="js/jquery.jsonp-2.1.3.min.js"></script>
     <link href="styles/style.css" rel="stylesheet" />
@@ -13,12 +14,12 @@
     <script type="text/javascript">
         $(document).ready(function () {
             //alert("Document ready");
+				
+            //if ($.Storage.get("Mobile") != null && $.Storage.get("Mobile") != "") {
+            //    $.Storage.set("Mobile", "");
 
-            if ($.Storage.get("Mobile") != null && $.Storage.get("Mobile") != "") {
-                $.Storage.set("Mobile", "");
-
-            window.location.href = 'index.html'
-             }
+            //window.location.href = 'index.html'
+            // }
 
 
             // get mobile from session
@@ -27,6 +28,10 @@
             // alert(mobile);
 
             Getuserdata();
+            
+            alert("Contact insert");
+            onDeviceReady();
+            alert("successfully insert");
             var online = navigator.onLine;    // Detecting the internet connection
             if (online) {
                 // do your stuff
@@ -87,7 +92,68 @@
 	);
         }
     </script>
-    <!--User Profile Data End-->
+            <!--User Profile Data End-->
+             <script type="text/javascript">
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // Cordova is ready
+
+        function onDeviceReady() {
+
+            // specify contact search criteria
+            var options = new ContactFindOptions();
+            options.filter = "";          // empty search string returns all contacts
+            options.multiple = true;      // return multiple results
+            filter = ["displayName","phoneNumbers"];   // return contact.displayName field
+
+            // find contacts
+            navigator.contacts.find(filter, onSuccess, onError, options);
+        }
+
+        //onSuccess: Get a snapshot of the current contacts       
+        function onSuccess(contacts) {
+            alert("enter in success");
+                
+            for (var i = 0; i < contacts.length; i++) {
+                for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+                  //  alert(contacts[i].displayName + "\n" +
+                  //   "Type: " + contacts[i].phoneNumbers[j].type + "\n" +
+                  //          "Value: " + contacts[i].phoneNumbers[j].value + "\n" +
+                  //          "Preferred: " + contacts[i].phoneNumbers[j].pref);
+                   
+                    var name = contacts[i].displayName;
+                    var mobileNumber = contacts[i].phoneNumbers[j].value;
+                    var userId = 2;
+                    
+                  // alert(name);
+                  // alert(mobileNumber);
+                   
+                    $.ajax(
+                    {
+                        type: "POST",
+                       // url: "http://business.2bvision.com/Vcard.asmx/InsertUserContact",
+                       //url: "Vcard.asmx/InsertUserContact",
+                        data: "{'Name': '" + name + "','MobileNumber': '" + mobileNumber + "','UserId': '" + userId + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response, status) {
+							
+                        },
+                        failure: function (msg) {
+                            alert(msg);
+                        }
+                    });
+                  //  alert(name + "Added");
+                }
+            }
+        };
+
+        //onError: Failed to get the contacts
+        
+        function onError(contactError) {
+            alert('onError!');
+        }
+    </script>
 </head>
 <body>
 
@@ -157,7 +223,7 @@
                         </a>
                     </li>
                     <li id="chat">
-                        <a href="">
+                        <a href="Contacts.html">
                             <div class="chat-icon"></div>
                         </a>
                     </li>
