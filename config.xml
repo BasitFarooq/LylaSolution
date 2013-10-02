@@ -13,10 +13,6 @@
   <description>
     LylaSolution is the world’s premier multicultural Global Sports Network and Legacy Search Engine. It’s exclusive “Timeline Features” provide the resources to Create, Share and Preserve “Your Sports Legacy“ from Childhood… to Professional and Beyond.
   </description>
-
-  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-<uses-permission android:name="android.permission.READ_CONTACTS" />
-<uses-permission android:name="android.permission.WRITE_CONTACTS" />
   
   <icon src="images/icon.png" gap:role="default" />
   <!--icons -->
