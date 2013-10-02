@@ -54,7 +54,7 @@
         function sendEmail(senderEmail) {
             //alert("Hello");
             var messageto = $('#txtEmailTo').val();
-            //alert("MessageTo: " + messageto);
+            alert("MessageTo: " + messageto);
             var subject = $('#txtSubject').val();
             //alert("Subject: " + subject);
             $.ajax(
@@ -139,13 +139,14 @@
     <a href="Profile.html" ><div class="profile-icon"></div></a>
     </li>
     <li id="email">
-    <a href="Email.html" class="active" ><div class="email-icon"></div></a>
+    <a href="Email.html" class="active" >
+    <div class="email-icon"></div></a>
     </li>
     <li id="chat">
     <a href="Contacts.html"><div class="chat-icon"></div></a>
     </li>
     <li id="share" style="border:none">
-    <a href=""><div class="share-icon"></div></a>
+    <a href="Social.hmtl"><div class="share-icon"></div></a>
     </li>
     </div>
 </ul>

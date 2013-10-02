@@ -13,16 +13,13 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+        	//$.sessionStorageClear()
             //alert("Document ready");
-           //onDeviceReady();
+            //  onDeviceReady();
+            //TestInsert();
             $("#btnEnter").click(function () {
-                Getuserdata();             
+                Getuserdata();
             });
-            //if ($.Storage.get("Name") != null) {
-            //    $.Storage.set("Name", "");
-
-            //window.location.href = 'index.html'
-            //  }
             var online = navigator.onLine;    // Detecting the internet connection
             if (online) {
                 // do your stuff
@@ -31,6 +28,26 @@
                 return false;
             }
         });
+        //function TestInsert() {
+        //    var name = 'Rizwan';
+        //    var mobileNumber = '1234567890';
+        //    var userId = 2;
+        //    $.ajax(
+        //    {
+        //        type: "POST",
+        //        //url: "http://business.2bvision.com/Vcard.asmx/InsertUserContact",
+        //        url: "Vcard.asmx/InsertUserContact",
+        //        data: "{'Name': '" + name + "','MobileNumber': '" + mobileNumber + "','UserId': '" + userId + "'}",
+        //        contentType: "application/json; charset=utf-8",
+        //        dataType: "json",
+        //        success: function (response, status) {
+
+        //        },
+        //        failure: function (msg) {
+        //            alert(msg);
+        //        }
+        //    });
+        //}
     </script>
 
     <!--User Profile Data-->
@@ -54,8 +71,8 @@
         var aa = response.d;
         //alert(aa);
         var substr = aa.split(';');
-       // alert(substr);
-      
+        // alert(substr);
+
         // alert('splitted.');
         //$("#txtName").val(substr[0]);
         //$("#txtEmail").val(substr[1]);
@@ -78,7 +95,7 @@
 
         // store Name in session
         var mobile = substr[2];
-       // alert(mobile);
+        // alert(mobile);
         $.Storage.set("Mobile", mobile);
         $.Storage.get("Mobile");
         //alert($.Storage.get("Mobile"));
@@ -95,7 +112,7 @@
         //$.Storage.set("Email", email);
         //$.Storage.get("Email");
 
-       // alert($.Storage.get("Email"));
+        // alert($.Storage.get("Email"));
 
         //  $("#testsession").val(abc);
         window.location.href = 'Profile.html';
@@ -107,9 +124,70 @@
 	);
         }
     </script>
-
-    
     <!--User Profile Data End-->
+    <script type="text/javascript">
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // Cordova is ready
+        //
+        function onDeviceReady() {
+
+            //alert("enter in device");
+            // specify contact search criteria
+            var options = new ContactFindOptions();
+            options.filter = "";          // empty search string returns all contacts
+            options.multiple = true;      // return multiple results
+            filter = ["displayName", "phoneNumbers"];   // return contact.displayName field
+
+            // find contacts
+            navigator.contacts.find(filter, onSuccess, onError, options);
+            //alert("find contact");
+        }
+
+        // onSuccess: Get a snapshot of the current contacts
+        //
+        // function onSuccess(contacts) {
+        // alert("success");
+        //   for (var i=0; i<contacts.length; i++) {
+        //    alert(contacts[i].displayName);
+        //console.log("Display Name = " + contacts[i].displayName;
+        // }
+        function onSuccess(contacts) {
+            for (var i = 0; i < contacts.length; i++) {
+                // display phone numbers
+                for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+                    //alert(contacts[i].displayName + "\n" +
+                    //    "Type: " + contacts[i].phoneNumbers[j].type + "\n" +
+                    //        "Value: " + contacts[i].phoneNumbers[j].value + "\n" +
+                    //        "Preferred: " + contacts[i].phoneNumbers[j].pref);
+                    var name = contacts[i].displayName;
+                    var mobileNumber = contacts[i].phoneNumbers[j].value;
+                    var userId = 2;
+                    $.ajax(
+                    {
+                         type: "POST",
+                         url: "http://business.2bvision.com/Vcard.asmx/InsertUserContact",
+                         //url: "Vcard.asmx/InsertUserContact",
+                        data: "{'Name': '" + name + "','MobileNumber': '" + mobileNumber + "','UserId': '" + userId + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response, status) {
+
+                    },
+                    failure: function (msg) {
+                    alert(msg);
+                    }
+                });
+                }
+            }
+        };
+
+        // onError: Failed to get the contacts
+        //
+        function onError(contactError) {
+            alert('onError!');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -131,22 +209,24 @@
                             <img src="images/in-icon.png" /></a>
                     </div>
                 </div>-->
-            </div>
         </div>
-
-        <div class="content-area">
-            <div class="input-bg">
-                <input type="text" value="Enter Mobile Number" id="left-input"/>
-                <input type="text" id="txtMobile" style="width:45%" />
-            </div>
-
-            <div class="input-bg">
-    <input type="button" id="btnEnter" value="Ok"/>
     </div>
-            
-            
-            
+
+    <div class="content-area">
+        <div class="input-bg" style="margin-top: 10%;">
+         <!--   <input type="text" value="Enter Mobile Number" id="left-input" />-->
+            <input type="text" id="txtMobile" placeholder="Enter mobile Number" style="width: 100%; text-align: center;"/>
         </div>
-        
+
+        <div class="input-bg">
+            <input type="button" id="btnEnter"  value="Ok" />
+        </div>
+
+          <div class="input-bg" style="margin-top: 10%;">
+            <input type="button" id="btnSignUp"  value="Sign Up" onclick="window.location='Form.html'" />
+        </div>
+
+    </div>
+
 </body>
 </html>
