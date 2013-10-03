@@ -5,6 +5,7 @@ body
 {
 	margin:0px;
 	padding:0px;
+	overflow:hidden;
 }
 .container
 {
@@ -98,8 +99,6 @@ body
 	width:100%;
 	height:auto;
 	margin:0;
-	
-	
 }
 
 
@@ -132,7 +131,8 @@ body
 	width:100%;
 	height:40px;
 	margin:2% 0 0 0;
-	background:#2c2c2d;
+	/*background:#2c2c2d;*/
+    background:#641917;
     position:fixed;
     bottom:0;
 }
@@ -204,7 +204,7 @@ body
 .contact-list
 {
     color:#fff;
-    //padding:2px;
+    padding:2px;
     margin:5px;
     margin-top: 1%;
     background: #2c2c2d;
@@ -212,5 +212,17 @@ body
     box-shadow: 1px 1px 0px 0px #999;
     font-family:Calibri;
     font-size:120%;
-    padding:2px 2px 2px 15px;
+}
+
+#displayName
+{
+    height:250px; width: 100%; overflow-y: scroll; margin-bottom: 10px;
+}
+
+.logo1
+{
+    background:url(../images/logo1.png) no-repeat;
+    width:200px;
+    height:141px;
+    margin:0 auto;
 }
